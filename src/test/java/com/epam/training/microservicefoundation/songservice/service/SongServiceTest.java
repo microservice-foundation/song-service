@@ -1,9 +1,9 @@
 package com.epam.training.microservicefoundation.songservice.service;
 
-import com.epam.training.microservicefoundation.songservice.domain.Song;
-import com.epam.training.microservicefoundation.songservice.domain.SongNotFoundException;
-import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
-import com.epam.training.microservicefoundation.songservice.domain.SongRecordId;
+import com.epam.training.microservicefoundation.songservice.model.Song;
+import com.epam.training.microservicefoundation.songservice.model.SongNotFoundException;
+import com.epam.training.microservicefoundation.songservice.model.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongRecordId;
 import com.epam.training.microservicefoundation.songservice.repository.SongRepository;
 import com.epam.training.microservicefoundation.songservice.service.implementation.IdParameterValidator;
 import com.epam.training.microservicefoundation.songservice.service.implementation.SongMapper;

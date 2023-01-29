@@ -1,6 +1,6 @@
 package com.epam.training.microservicefoundation.songservice.service.validator;
 
-import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongRecord;
 import com.epam.training.microservicefoundation.songservice.service.implementation.SongRecordValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

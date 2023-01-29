@@ -1,7 +1,7 @@
 package com.epam.training.microservicefoundation.songservice.api;
 
-import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
-import com.epam.training.microservicefoundation.songservice.domain.SongRecordId;
+import com.epam.training.microservicefoundation.songservice.model.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongRecordId;
 import com.epam.training.microservicefoundation.songservice.service.SongService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +22,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/songs")
 public class SongController {
-    private Logger log = LoggerFactory.getLogger(SongController.class);
+    private final Logger log = LoggerFactory.getLogger(SongController.class);
+
+    private final SongService service;
     @Autowired
-    private SongService service;
+    public SongController(SongService service) {
+        this.service = service;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

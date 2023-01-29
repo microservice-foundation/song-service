@@ -1,9 +1,9 @@
 package com.epam.training.microservicefoundation.songservice.service.implementation;
 
-import com.epam.training.microservicefoundation.songservice.domain.Song;
-import com.epam.training.microservicefoundation.songservice.domain.SongNotFoundException;
-import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
-import com.epam.training.microservicefoundation.songservice.domain.SongRecordId;
+import com.epam.training.microservicefoundation.songservice.model.Song;
+import com.epam.training.microservicefoundation.songservice.model.SongNotFoundException;
+import com.epam.training.microservicefoundation.songservice.model.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongRecordId;
 import com.epam.training.microservicefoundation.songservice.repository.SongRepository;
 import com.epam.training.microservicefoundation.songservice.service.Mapper;
 import com.epam.training.microservicefoundation.songservice.service.SongService;
@@ -14,8 +14,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,7 +45,7 @@ public class SongServiceImpl implements SongService {
         log.info("Saving a song record '{}'", songRecord);
         if(!songRecordValidator.validate(songRecord)) {
             IllegalArgumentException illegalArgumentException =
-                    new IllegalArgumentException(String.format("Saving invalid song record '%s'", songRecord));
+                    new IllegalArgumentException("Saving invalid song record");
 
             log.error("Saving a song record with invalid value", illegalArgumentException);
             throw illegalArgumentException;
@@ -121,8 +123,15 @@ public class SongServiceImpl implements SongService {
             log.error("Id param size '{}' should be less than 200 \nreason:", ids.length, ex);
             throw ex;
         }
-        Arrays.stream(ids).forEach(repository::deleteByResourceId);
-        log.debug("Songs with resource id(s) '{}' were deleted", ids);
-        return Arrays.stream(ids).mapToObj(SongRecordId::new).collect(Collectors.toList());
+        List<SongRecordId> deletedSongIds = new ArrayList<>();
+        for(long resourceId: ids) {
+            Optional<Song> byResourceId = repository.findByResourceId(resourceId);
+            byResourceId.ifPresent(song -> {
+                repository.delete(song);
+                deletedSongIds.add(new SongRecordId(song.getId()));
+            });
+        }
+        log.debug("Songs with resource id(s) '{}' were deleted", deletedSongIds);
+        return deletedSongIds;
     }
 }

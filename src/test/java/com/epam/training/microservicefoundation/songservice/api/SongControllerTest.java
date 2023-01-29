@@ -1,6 +1,6 @@
 package com.epam.training.microservicefoundation.songservice.api;
 
-import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongRecord;
 import com.epam.training.microservicefoundation.songservice.repository.PostgresExtension;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @ExtendWith(value = {PostgresExtension.class})
-@TestPropertySource(locations = "classpath:application.yaml")
+@TestPropertySource(locations = "classpath:application.properties")
 class SongControllerTest {
     private MockMvc mockMvc;
     private ObjectMapper objectMapper;

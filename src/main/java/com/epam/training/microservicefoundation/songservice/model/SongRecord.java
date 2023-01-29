@@ -1,4 +1,4 @@
-package com.epam.training.microservicefoundation.songservice.domain;
+package com.epam.training.microservicefoundation.songservice.model;
 
 import java.io.Serializable;
 

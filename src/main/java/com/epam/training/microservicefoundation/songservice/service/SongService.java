@@ -1,7 +1,7 @@
 package com.epam.training.microservicefoundation.songservice.service;
 
-import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
-import com.epam.training.microservicefoundation.songservice.domain.SongRecordId;
+import com.epam.training.microservicefoundation.songservice.model.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongRecordId;
 
 import java.util.List;
 
