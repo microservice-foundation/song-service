@@ -10,6 +10,7 @@ public class shouldReturnBadRequestWhenSaveSongMetadata implements Supplier<Cont
     @Override
     public Contract get() {
         return Contract.make(contract -> {
+            contract.description("Represents a bad-request scenario of saving a song metadata");
             contract.request(request -> {
                 request.method(request.POST());
                 request.url("/api/v1/songs");

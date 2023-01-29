@@ -11,6 +11,7 @@ public class shouldReturnBadRequestWhenDeleteSongMetadataByResourceId implements
     @Override
     public Contract get() {
         return Contract.make(contract -> {
+            contract.description("Represents a bad-request scenario of deleting song metadata by resource id(s)");
             contract.request(request -> {
                 request.method(request.DELETE());
                 request.url("/api/v1/songs/delete-by-resource-id", url -> {
