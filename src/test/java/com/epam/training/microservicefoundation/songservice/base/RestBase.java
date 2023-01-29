@@ -13,7 +13,6 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import io.restassured.module.mockmvc.config.RestAssuredMockMvcConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatcher;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
