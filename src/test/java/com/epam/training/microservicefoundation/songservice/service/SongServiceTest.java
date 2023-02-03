@@ -103,14 +103,14 @@ class SongServiceTest {
     @Test
     void shouldDeleteSongByIds() {
         when(idParameterValidator.validate(any())).thenReturn(Boolean.TRUE);
-        doNothing().when(repository).delete(any());
+        doNothing().when(repository).deleteById(any());
         long[] ids = {1, 2};
         List<SongRecordId> songRecordIds = service.deleteByIds(ids);
         assertNotNull(songRecordIds);
         assertEquals(ids.length, songRecordIds.size());
 
         verify(idParameterValidator, times(1)).validate(any());
-        verify(repository, times(ids.length)).delete(any());
+        verify(repository, times(ids.length)).deleteById(any());
     }
 
     @Test

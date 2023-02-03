@@ -98,9 +98,7 @@ public class SongServiceImpl implements SongService {
             log.error("Id param size '{}' should be less than 200 \nreason:", ids.length, ex);
             throw ex;
         }
-
-        Arrays.stream(ids).mapToObj(repository::getReferenceById).forEach(repository::delete);
-
+        Arrays.stream(ids).forEach(repository::deleteById);
         log.debug("Songs with id(s) '{}' were deleted", ids);
         return Arrays.stream(ids).mapToObj(SongRecordId::new).collect(Collectors.toList());
     }
