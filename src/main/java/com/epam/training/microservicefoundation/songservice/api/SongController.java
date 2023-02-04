@@ -1,7 +1,7 @@
 package com.epam.training.microservicefoundation.songservice.api;
 
+import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
 import com.epam.training.microservicefoundation.songservice.model.SongRecord;
-import com.epam.training.microservicefoundation.songservice.model.SongRecordId;
 import com.epam.training.microservicefoundation.songservice.service.SongService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,28 +32,28 @@ public class SongController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public SongRecordId save(@RequestBody SongRecord songRecord) {
-        log.info("Saving a song metadata '{}'", songRecord);
-        return service.save(songRecord);
+    public SongRecord save(@RequestBody SongMetadata songMetadata) {
+        log.info("Saving a song metadata '{}'", songMetadata);
+        return service.save(songMetadata);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public SongRecord get(@PathVariable long id) {
+    public SongMetadata get(@PathVariable long id) {
         log.info("Getting a song metadata by id '{}'", id);
         return service.getById(id);
     }
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public List<SongRecordId> delete(@RequestParam(value = "id") long[] ids) {
+    public List<SongRecord> delete(@RequestParam(value = "id") long[] ids) {
         log.info("Deleting song metadata(s) with id(s) '{}'", ids);
         return service.deleteByIds(ids);
     }
 
     @DeleteMapping("delete-by-resource-id")
     @ResponseStatus(value = HttpStatus.OK)
-    public List<SongRecordId> deleteByResourceId(@RequestParam(value = "id") long[] ids) {
+    public List<SongRecord> deleteByResourceId(@RequestParam(value = "id") long[] ids) {
         log.info("Deleting song metadata(s) with resource id(s) '{}'", ids);
         return service.deleteByResourceIds(ids);
     }
